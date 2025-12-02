@@ -1,0 +1,74 @@
+body{
+    margin: 0;
+    font-family:'Times New Roman', Times, serif ;
+}
+.main1 .nav .nav-items {
+    padding:  0 200px;
+    margin: 0 170px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    justify-content: space-between;
+    mask-image: linear-gradient(
+        to right,
+        transparent,
+        black,
+        black,
+        black,
+        transparent
+    );
+    position: sticky;
+    z-index: 1000;
+   
+}
+.main1 .nav .nav-items img{
+    height:50px;
+    width: 140px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 50px;
+    background-color: #6bb42d;
+}
+.main1 {
+    background-color:#6bb42d;
+    padding: 20px;
+}
+.main1 .nav .nav-items a{
+    text-decoration: none;
+    color: black;
+}
+.main1 .main1-content .main1-text h1{
+    color: white;
+    font-weight: 800;
+    font-size: 47px;
+}
+.main1 .main1-content .main1-text p{
+    color: white;
+    font-size: 24px;
+}
+.main1 {
+height: 620px;
+  /* Cut the div diagonally */
+  clip-path: polygon(0 0, 100% 0, 100% 87%, 0 100%);
+}
+.main1 .main1-content{
+    display: flex;
+}
+.main1 .main1-content .main1-text{
+    padding: 0px 250px;
+    justify-self: center;
+}
+.main1 .main1-content .main1-img img{
+        filter: brightness(1) contrast(1.2) saturate(1.2);
+        height: 320px;
+        padding: 40px 40px;
+        margin-right: 60px;
+}
+.main1 .main1-content .red{
+    height: 85px;
+    width: 280px;
+}
+.main1 .main1-content2{
+    background-color: #f79000;
+    clip-path: polygon(48% 13%, 100% 0, 100% 100%,47% 87%, 0 76%, 0 27%);
+}
