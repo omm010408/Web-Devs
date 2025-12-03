@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-slate-800/50 backdrop-blur-xl rounded-3xl shadow-2xl p-6 w-full max-w-sm border border-slate-700">
+        <!-- Display -->
+        <div class="bg-slate-900/80 rounded-2xl p-6 mb-6 border border-slate-700">
+            <div id="expression" class="text-purple-400 text-sm h-6 text-right mb-2 font-mono"></div>
+            <div id="display" class="text-white text-4xl font-light text-right h-12 overflow-hidden">0</div>
+        </div>
+
+        <!-- Buttons Grid -->
+        <div class="grid grid-cols-4 gap-3">
+            <!-- Row 1 -->
+            <button onclick="clearAll()" class="btn-function col-span-2">AC</button>
+            <button onclick="deleteChar()" class="btn-function">DEL</button>
+            <button onclick="appendOperator('/')" class="btn-operator">÷</button>
+
+            <!-- Row 2 -->
+            <button onclick="appendNumber('7')" class="btn-number">7</button>
+            <button onclick="appendNumber('8')" class="btn-number">8</button>
+            <button onclick="appendNumber('9')" class="btn-number">9</button>
+            <button onclick="appendOperator('*')" class="btn-operator">×</button>
+
+            <!-- Row 3 -->
+            <button onclick="appendNumber('4')" class="btn-number">4</button>
+            <button onclick="appendNumber('5')" class="btn-number">5</button>
+            <button onclick="appendNumber('6')" class="btn-number">6</button>
+            <button onclick="appendOperator('-')" class="btn-operator">−</button>
+
+            <!-- Row 4 -->
+            <button onclick="appendNumber('1')" class="btn-number">1</button>
+            <button onclick="appendNumber('2')" class="btn-number">2</button>
+            <button onclick="appendNumber('3')" class="btn-number">3</button>
+            <button onclick="appendOperator('+')" class="btn-operator">+</button>
+
+            <!-- Row 5 -->
+            <button onclick="appendNumber('0')" class="btn-number col-span-2">0</button>
+            <button onclick="appendNumber('.')" class="btn-number">.</button>
+            <button onclick="calculate()" class="btn-equals">=</button>
+        </div>
+    </div>
+
+    <style>
+        .btn-number {
+            @apply bg-slate-700/50 hover:bg-slate-600/60 text-white text-xl font-medium rounded-xl py-5 transition-all duration-200 hover:scale-105 active:scale-95 border border-slate-600/50;
+        }
+        .btn-operator {
+            @apply bg-purple-600/40 hover:bg-purple-500/50 text-purple-200 text-2xl font-medium rounded-xl py-5 transition-all duration-200 hover:scale-105 active:scale-95 border border-purple-500/50;
+        }
+        .btn-function {
+            @apply bg-slate-600/40 hover:bg-slate-500/50 text-slate-200 text-lg font-medium rounded-xl py-5 transition-all duration-200 hover:scale-105 active:scale-95 border border-slate-500/50;
+        }
+        .btn-equals {
+            @apply bg-gradient-to-br from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white text-2xl font-bold rounded-xl py-5 transition-all duration-200 hover:scale-105 active:scale-95 shadow-lg shadow-purple-500/50;
+        }
+    </style>
+
+    <script>
+        let currentInput = '0';
+        let expression = '';
+        let lastResult = null;
+
+        const display = document.getElementById('display');
+        const expressionDisplay = document.getElementById('expression');
+
+        function updateDisplay() {
+            display.textContent = currentInput;
+            expressionDisplay.textContent = expression;
+        }
+
+        function appendNumber(num) {
+            if (currentInput === '0' || lastResult !== null) {
+                currentInput = num;
+                if (lastResult !== null) {
+                    expression = '';
+                    lastResult = null;
+                }
+            } else {
+                currentInput += num;
+            }
+            updateDisplay();
+        }
+
+        function appendOperator(op) {
+            if (lastResult !== null) {
+                expression = lastResult + ' ' + op;
+                currentInput = '0';
+                lastResult = null;
+            } else if (currentInput !== '') {
+                expression = expression ? expression + ' ' + currentInput + ' ' + op : currentInput + ' ' + op;
+                currentInput = '0';
+            }
+            updateDisplay();
+        }
+
+        function clearAll() {
+            currentInput = '0';
+            expression = '';
+            lastResult = null;
+            updateDisplay();
+        }
+
+        function deleteChar() {
+            if (currentInput.length > 1) {
+                currentInput = currentInput.slice(0, -1);
+            } else {
+                currentInput = '0';
+            }
+            updateDisplay();
+        }
+
+        function calculate() {
+            if (expression && currentInput) {
+                try {
+                    const fullExpression = expression + ' ' + currentInput;
+                    const result = eval(fullExpression.replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-'));
+                    lastResult = result.toString();
+                    currentInput = lastResult;
+                    expression = fullExpression + ' =';
+                    updateDisplay();
+                } catch (error) {
+                    currentInput = 'Error';
+                    updateDisplay();
+                }
+            }
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', (e) => {
+            if (e.key >= '0' && e.key <= '9' || e.key === '.') {
+                appendNumber(e.key);
+            } else if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/') {
+                appendOperator(e.key);
+            } else if (e.key === 'Enter' || e.key === '=') {
+                e.preventDefault();
+                calculate();
+            } else if (e.key === 'Escape') {
+                clearAll();
+            } else if (e.key === 'Backspace') {
+                deleteChar();
+            }
+        });
+    </script>
+</body>
+</html>
