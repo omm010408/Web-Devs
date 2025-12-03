@@ -1,0 +1,144 @@
+body{
+    margin: 0;
+    font-family: nunito;
+    /* background-image and animation moved to ::before pseudo-element */
+    animation: move 100s linear infinite;
+    background-image: url(Screenshot\ 2025-09-12\ at\ 00.40.47.png);
+    background-repeat: repeat-x;
+    background-size: cover;
+    height: 100%;
+    background-color: black;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1vw;
+    border-bottom: 1px solid gray;
+}
+.nav .center {
+    display: flex;
+    gap: 4vw;
+}
+.nav button{
+    justify-content: end;
+    border-radius: 25vw;
+    border: none;
+    background-color:rgb(6, 255, 98);
+    color: black;
+    padding: .5vw 3vw;
+}
+.nav .center a{
+    text-decoration: none;
+    color: white;
+}
+.main h1{
+    font-size: 50px;
+    color: white;
+    text-align: center;
+    margin-top: 4vw;
+}
+.main span{
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: rgb(6, 255, 98);
+}
+.main .p{
+    color:rgb(218, 218, 218);
+    text-align: center;
+    padding: 0 20vw;
+}
+.main .me .para p{
+    color:rgb(218, 218, 218);
+}
+.main .me .para h2{
+    color: white;
+    font-size: xx-large;
+}
+.main .me .para {
+    padding: 3vw;
+}
+.btn2{
+    margin-left: 3vw;
+}
+.btn2 .btn1{
+    border-radius: 25vw;
+    border: none;
+    background-color:rgb(6, 255, 98);
+    color: black;
+    padding: 1.5vw 3vw;
+    font-weight: 900;
+}
+.btn2 .btn3{
+    border-radius: 25vw;
+    padding: 1.5vw 3vw;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: white;
+    outline: 1px solid rgb(218, 218, 218);
+    border: none;
+    font-weight: 900;
+    margin-left: 4vw;
+}
+.main .me img{
+    height: 26vw;
+    margin-top: -1vw ;
+    border: none;
+}
+.main .me{
+    display: flex;
+    padding-top: 3vw;
+}
+.footer p{
+    color: white;
+    text-align: center;
+    padding-top: 3vw;
+}
+.footer .links {
+    display: flex;
+    justify-content: center;
+    color: white;
+    gap: 5vw;
+    
+}
+.nav img{
+    height: 30px;
+    width: 100px;
+}
+.footer .links a {
+    text-decoration: none;
+    color: white;
+}
+button:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+}
+.nav .center a:hover{
+    transform: scale(1.2);
+    transform: translate(-2px,-2px);
+}
+@keyframes move {
+    from{
+        background-position: 0 0;
+    }
+    to{
+        background-position: -10000px 0;
+    }
+}
+
+@keyframes fade {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.main h1, .main p, .main .me, .footer{
+    opacity: 0;
+    animation: textFade 1.2s ease-in forwards;
+}
+
+@keyframes textFade {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.footer{
+    margin-top: 8vw;
+    padding-bottom: 1.44vw;
+}

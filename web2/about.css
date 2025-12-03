@@ -1,0 +1,116 @@
+body{
+    margin: 0;
+    background-image: url("Screenshot\ 2025-09-12\ at\ 00.40.47.png");
+    background-repeat: repeat-x;
+    background-size: cover;
+    backdrop-filter: blur(10px);
+    animation: move 100s linear infinite;
+    background-color: black;
+}
+.nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 1vw; 
+    border-bottom: 1px solid gray;
+    align-items: center;
+}
+.nav img{
+    height: 30px;
+    width: 100px;
+}
+.nav .div a{
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: 3vw;
+}
+.nav .btn button{
+    background-color: rgb(6, 255, 98);
+    border-radius: 25vw;
+    border: none;
+    color: black;
+    padding: .5vw 3vw;
+}
+button:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+}
+.content .about h2{
+    color:white;
+    font-size: 28px;
+}
+.content .about p{
+    font-size: 16px;
+    color: rgb(218, 218, 218);
+}
+.main img{
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    padding: 0 5vw;
+    margin-top: 2vw;
+}
+
+.main{
+    display: flex;
+   margin: 0 20vw;
+   padding: 7vw 0;
+}
+.main .pic span{
+    position: absolute;
+    top: 25vw;
+    left: 34.5vw;
+    border: 1px solid gray;
+    border-radius: 50%;
+    width: 20px;
+    padding: 3px;
+    background-color: gray;
+}
+.main .pic .detail h1, .main .pic .detail p{
+    color: white;
+}
+.main .pic .detail  p{
+    font-size: 14px;
+    color: rgb(218, 218, 218);
+}
+.main .pic .detail{
+    padding: 0px 5.4vw;
+}
+.footer small{
+    color: rgb(218, 218, 218);
+    display: flex;
+    justify-self: center;
+    padding: 1vw 0;
+}
+.footer{
+    border-top: 1px solid gray;
+    margin-top:5.3vw;
+}
+@keyframes move {
+    from{
+        background-position: 0 0;
+    }
+    to{
+        background-position: -10000px 0;
+    }
+}
+/* Fade-in animation for text */
+.main h1,
+.main h1 span,
+.main p,
+.main h2,
+.main .para p,
+.footer p,
+.footer a {
+    opacity: 0;
+    animation: textFade 1.2s ease-in forwards;
+}
+
+/* Keyframes for text fade */
+@keyframes textFade {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.nav .div a:hover {
+    transform: scale(1.2) translate(-2px, -2px);
+}
